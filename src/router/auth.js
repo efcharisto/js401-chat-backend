@@ -47,7 +47,7 @@ export default new Router()
             .then(user => user.tokenCreate())
             .then(token => {
                 console.log("(signup) Token", token);
-                res.cookie('X-BBB-Token', token);
+                res.cookie('X-BBB-Token', token, {domain:process.env.COOKIE_DOMAIN});
                 res.send(token);
             })
             .catch(next);
@@ -70,7 +70,7 @@ export default new Router()
         req.user.tokenCreate()
             .then((token) => {
                 console.log("(login) Token", token);
-                res.cookie('X-BBB-Token', token);
+                res.cookie('X-BBB-Token', token, {domain:process.env.COOKIE_DOMAIN});
                 res.send(token);
             })
             .catch(next);
@@ -116,7 +116,7 @@ export default new Router()
             })
             .then ( token => {
                 console.log("(5) Token", token);
-                res.cookie('X-BBB-Token', token);
+                res.cookie('X-BBB-Token', token, {domain:process.env.COOKIE_DOMAIN});
                 res.redirect(URL);
             }) 
             .catch( error => {
